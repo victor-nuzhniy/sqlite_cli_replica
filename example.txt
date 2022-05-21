@@ -1,0 +1,53 @@
+request = MySqliteRequest()
+request = request.from_('nba_player_data.csv')
+request = request.select('name')
+request = request.where('birth_date', 'December 11, 1976')
+request.run()
+
+request = MySqliteRequest()
+request = request.insert('nba_player_data.csv')
+request = request.values({'name': 'Alaa Abdelnaby', 'year_start': '1991', 'year_end': '1995', 'position': 'F-C', 'height': '6-10', 'weight': '240', 'birth_date': "June 24, 1968", 'college': 'Duke University'})
+request.run()
+
+request = MySqliteRequest()
+request = request.select('name')
+request = request.from_('nba_player_data.csv')
+request = request.where('name', 'Alaa Abdelnaby')
+request.run()
+
+request = MySqliteRequest()
+request = request.from_('nba_player_data.csv')
+request = request.select(['name', 'year_start'])
+request = request.where('college', 'Duke University')
+request = request.where('year_start', '1991')
+request.run()
+
+request = MySqliteRequest()
+request = request.delete()
+request = request.from_('nba_player_data.csv')
+request = request.where('name', 'Alaa Abdelnaby')
+request.run()
+
+request = MySqliteRequest()
+request = request.delete()
+request = request.from_('nba_player_data.csv')
+request = request.where('name', 'Matt Zunic')
+request.run()
+
+request = MySqliteRequest()
+request = request.update('nba_player_data.csv')
+request = request.set_({'year_start': '1991', 'year_end': '1999'})
+request = request.where('name', 'Alaa Abdelnaby')
+request.run()
+
+request = MySqliteRequest()
+request = request.from_('nba_player_data.csv')
+request = request.select('name')
+request = request.where('college', 'University of California')
+request.run()
+
+
+SELECT name, year_start FROM nba_player_data.csv WHERE name = 'Alaa Malaa';
+INSERT INTO 'nba_player_data.csv' VALUES ('aaaa', 1994, 1999, F, 6-9, 260, 'June 22, 1977', 'Duke Duke');
+UPDATE nba_player_data.csv SET name = Ivan, college = University, year_start = 1995 WHERE name = 'aaaa';
+DELETE FROM nba_player_data.csv WHERE name = Ivan;
